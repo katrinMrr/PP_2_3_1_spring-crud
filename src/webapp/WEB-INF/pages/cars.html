@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Loop</title>
+    <style>
+        table th, table td {padding: 5px;}
+        .row  {
+            font-style: italic;
+        }
+        .even-row {
+            color: #331552;
+        }
+        .odd-row {
+            color: #ff00d5;
+        }
+    </style>
+</head>
+<body>
+<h1>Список машин:</h1>
+<table border="1">
+    <tr>
+        <th>No</th>
+        <th>Car model</th>
+        <th>Car color</th>
+        <th>Car mileage</th>
+    </tr>
+    <tr th:each="car, state : ${cars}"
+        class="row" th:classappend="${state.odd} ? 'odd-row' : 'even-row'">
+        <td th:utext="${state.count}">No</td>
+        <td th:utext="${car.modelCar}">Car model</td>
+        <td th:utext="${car.colorCar}">Car color</td>
+        <td th:utext="${car.mileageCar}">Car mileage</td>
+    </tr>
+</table>
+</body>
+</html>
