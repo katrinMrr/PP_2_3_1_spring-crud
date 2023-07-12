@@ -40,7 +40,7 @@
             <td>
                 <form th:method="get" th:action="@{/users/{id}(id=${user.getId()})}">
                     <input type="submit" value="Редактировать"/></form>
-                <form th:method="post" th:action="@{/users/delete/{id}(id=${user.getId()})}">
+                <form th:method="delete" th:action="@{/users/delete/{id}(id=${user.getId()})}">
                     <input type="submit" value="Удалить"/></form>
             </td>
         </tr>

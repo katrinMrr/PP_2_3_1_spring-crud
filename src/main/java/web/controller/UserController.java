@@ -28,24 +28,24 @@ public class UserController {
 
     @GetMapping("/new")
     public String newUser(ModelMap model) {
-        model.addAttribute("user",new User());
+        model.addAttribute("user", new User());
         return "new";
     }
 
 
-    @PostMapping("/create")
+    @PutMapping("/create")
     public String create(@ModelAttribute("user") User user) {
         userService.addUser(user);
         return "redirect:/users";
     }
 
-    @PostMapping("/edit/{id}")
+    @PatchMapping("/edit/{id}")
     public String edit(@ModelAttribute("user") User user) {
         userService.updateUser(user);
         return "redirect:/users";
     }
 
-    @PostMapping("/delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public String delete(@PathVariable("id") long id) {
         userService.deleteUser(id);
         return "redirect:/users";

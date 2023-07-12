@@ -6,7 +6,8 @@
 </head>
 <body>
 <fieldset>
-    <form th:method="POST" th:action="@{/users/create}" th:object="${user}">
+    <form th:method="put" th:action="@{/users/create}" th:object="${user}">
+        <input type="hidden" name="_method" value="put">
         <legend>Персональная информация</legend>
         <br>
         <label for="name">Имя:</label>
