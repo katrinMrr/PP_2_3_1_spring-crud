@@ -1,4 +1,8 @@
-package web.model;
+package springBoot.model;
+
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.text.ParseException;
@@ -9,10 +13,13 @@ import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 @Entity
+@Getter
+@Setter
+@Table(name = "users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     @Column(name = "name")
     private String name;
     @Column(name = "birthday")
@@ -24,13 +31,6 @@ public class User {
         this.birthday = Date.from(Instant.now());
     }
 
-
-    public User(String name, Date birthday, String gender) {
-        this.name = name;
-        this.birthday = birthday;
-        this.gender = gender;
-    }
-
     public String getBirthday() {
         return birthday.toInstant().atZone(ZoneId.systemDefault()).toLocalDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
     }
@@ -40,37 +40,4 @@ public class User {
         this.birthday = simpleDateFormat.parse(birthday);
     }
 
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", birthday=" + birthday +
-                ", gender='" + gender + '\'' +
-                '}';
-    }
 }

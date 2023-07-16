@@ -1,11 +1,11 @@
-package web.controller;
+package springBoot.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
-import web.model.User;
-import web.service.UserService;
+import springBoot.model.User;
+import springBoot.service.UserService;
 
 
 @Controller
@@ -21,7 +21,7 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public String show(ModelMap model, @PathVariable("id") long id) {
+    public String show(ModelMap model, @PathVariable("id") Long id) {
         model.addAttribute("user", userService.getUserById(id));
         return "show";
     }
@@ -32,21 +32,20 @@ public class UserController {
         return "new";
     }
 
-
     @PutMapping("/create")
     public String create(@ModelAttribute("user") User user) {
-        userService.addUser(user);
+        userService.saveOrUpdate(user);
         return "redirect:/users";
     }
 
     @PatchMapping("/edit/{id}")
     public String edit(@ModelAttribute("user") User user) {
-        userService.updateUser(user);
+        userService.saveOrUpdate(user);
         return "redirect:/users";
     }
 
     @DeleteMapping("/delete/{id}")
-    public String delete(@PathVariable("id") long id) {
+    public String delete(@PathVariable("id") Long id) {
         userService.deleteUser(id);
         return "redirect:/users";
     }
